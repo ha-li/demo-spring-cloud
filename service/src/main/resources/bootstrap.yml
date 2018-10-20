@@ -1,0 +1,43 @@
+spring:
+   application:
+      name: demo
+   cloud:
+      config:
+         name: demo
+         uri: https://config-e2e.api.intuit.net/v2/
+         eTagsEnabled: true
+
+logging:
+   file: /Users/hlieu/app/${spring.application.name}/logs/application.log
+   level:
+      com.intuit.CLASSPATHINFO: ERROR
+      com.intuit.platform.jsk.config.listener.ConfigClientListener: ERROR
+
+cloud:
+   aws:
+      stack:
+         auto: false
+
+---
+spring:
+   profiles: local
+   cloud:
+      config:
+         uri: http://localhost:8888
+
+
+---
+spring:
+   profiles: default
+   cloud:
+      config:
+         uri: http://localhost:8888
+
+---
+spring:
+   profiles: hlieu
+   cloud:
+      config:
+         uri: http://localhost:8888
+
+
